@@ -19,6 +19,10 @@ body {
   text-align: right;
 }
 
+.flex {
+  display: flex;
+}
+
 .couple-name {
   display: flex;
   justify-content: center;
@@ -30,6 +34,11 @@ body {
   font-family: "KG Second Chances";
   margin: 0 10px;
   font-size: 6rem;
+}
+@media (max-width: 610px) {
+  .couple-name .special-char {
+    font-size: 4.5em;
+  }
 }
 
 .names span {
@@ -43,11 +52,35 @@ body {
   font-size: 50px;
   text-transform: uppercase;
 }
+@media (max-width: 610px) {
+  .names span:first-of-type {
+    font-size: 2em;
+  }
+}
 .names span:last-of-type {
   font-size: 36px;
 }
+@media (max-width: 610px) {
+  .names span:last-of-type {
+    font-size: 1.2em;
+  }
+}
 .names:first-of-type span:last-of-type {
   text-align: right;
+}
+
+.fixed-nav nav {
+  top: 0;
+  background: #fff;
+  width: 100%;
+  z-index: 99999;
+  position: fixed;
+}
+.fixed-nav .hero {
+  margin-top: 57px;
+}
+.fixed-nav .menu {
+  border-bottom: 1px solid #eee;
 }
 
 .menu {
@@ -67,9 +100,57 @@ body {
   text-transform: uppercase;
   text-decoration: none;
 }
+@media (min-width: 610px) and (max-width: 730px) {
+  .menu a {
+    font-size: 11px;
+  }
+}
+.menu a i {
+  display: none;
+}
+@media (max-width: 610px) {
+  .menu a span {
+    display: none;
+  }
+  .menu a i {
+    display: block;
+  }
+}
+.menu a:hover {
+  box-shadow: inset 0 -5px 0 #a7b941;
+  transition: all 0.5s;
+}
 
+.hero {
+  position: relative;
+}
 .hero img {
   width: 100%;
+}
+
+.arrows {
+  width: 100%;
+  position: absolute;
+  display: block;
+  min-height: 100%;
+}
+.arrows i {
+  position: absolute;
+  top: 50%;
+  display: block;
+  z-index: 1;
+  transform: translate(0, -50%);
+  cursor: pointer;
+  font-size: 3.5em;
+  color: #fff;
+  font-weight: bold;
+  opacity: 0.5;
+}
+.arrows i:first-of-type {
+  left: 25px;
+}
+.arrows i:last-of-type {
+  right: 25px;
 }
 
 .countdown {
@@ -82,13 +163,24 @@ body {
 .countdown p {
   font-size: 50px;
 }
+@media (max-width: 610px) {
+  .countdown p {
+    font-size: 30px;
+  }
+}
 
 .couple-info {
   display: flex;
   color: #fff;
+  flex-wrap: wrap;
 }
 .couple-info > * {
   flex: 1;
+}
+@media (max-width: 500px) {
+  .couple-info > * {
+    flex: 1 1 100%;
+  }
 }
 .couple-info h2 {
   margin: 0;
@@ -96,6 +188,7 @@ body {
 }
 .couple-info p {
   font-weight: 300;
+  text-align: justify;
 }
 .couple-info img {
   width: 100%;
@@ -128,13 +221,31 @@ body {
 }
 
 .people-slider {
+  display: flex;
+  flex-wrap: wrap;
   width: 80%;
-  margin: 0 auto;
+  margin: auto;
+  justify-content: center;
+}
+@media (max-width: 830px) {
+  .people-slider {
+    width: 100%;
+  }
+}
+.people-slider .item {
+  padding: 10px;
+  width: calc(25% - 20px);
+}
+@media (max-width: 650px) {
+  .people-slider .item {
+    width: calc(50% - 20px);
+  }
 }
 .people-slider .item figure {
   position: relative;
-  width: 180px;
-  height: 180px;
+  overflow: hidden;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   margin: auto;
   border: 8px solid #fff;
@@ -168,6 +279,7 @@ body {
 .location-card {
   background: #fff;
   border-radius: 10px 10px 0 0;
+  position: relative;
 }
 .location-card .thumb {
   width: 100%;
@@ -175,6 +287,12 @@ body {
   overflow: hidden;
   position: relative;
   border-radius: 10px 10px 0 0;
+}
+.location-card .thumb .overlay {
+  width: 100%;
+  min-height: 350px;
+  position: absolute;
+  top: 0;
 }
 .location-card .info {
   padding: 30px;
@@ -214,10 +332,59 @@ body {
     display: block;
   }
 }
+.location-card .more-local-info {
+  text-align: center;
+  cursor: pointer;
+  transform: translateY(-15px);
+  transition: all 0.5s;
+  margin: auto;
+  display: table;
+}
+.location-card .more-local-info span {
+  display: block;
+  line-height: 0;
+}
+.location-card .more-local-info:hover {
+  transform: translateY(-5px);
+}
+.location-card .map-details {
+  display: none;
+  opacity: 1;
+  transition: opacity 1s;
+}
+.location-card .map-details.hide {
+  opacity: 0;
+}
+.location-card .map-details .item {
+  width: 50%;
+}
+.location-card .map-details p {
+  padding: 0 30px;
+}
+.location-card .map-details li {
+  font-size: 14px;
+  font-weight: 300;
+}
+.location-card .map-details ul {
+  padding: 0 50px;
+}
 
 .rsvp {
-  background: #58b39c;
-  padding: 50px 30px;
+  background-size: cover;
+  padding: 100px 30px;
+  position: relative;
+  background-position-y: -110px;
+}
+.rsvp:before {
+  content: "";
+  background: url(http://subtlepatterns.com/patterns/dark_fish_skin.png) repeat;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  opacity: 0.5;
+  z-index: 0;
 }
 .rsvp h1 {
   font-family: "KG Second Chances";
@@ -229,6 +396,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
+  position: relative;
 }
 .rsvp a {
   border: 3px solid #fff;
@@ -241,6 +410,24 @@ body {
 .rsvp a:hover {
   background: #fff;
   color: #58b39c;
+}
+
+.proposal {
+  background: #ACA092;
+  padding: 30px 10%;
+}
+.proposal h1 {
+  font-family: "KG Second Chances";
+  font-weight: normal;
+  font-size: 42px;
+  color: #F2E0BA;
+}
+.proposal .content {
+  display: flex;
+}
+.proposal .content iframe {
+  width: 50%;
+  padding: 10px;
 }
 
 .gifts {
@@ -261,6 +448,17 @@ body {
   margin: 50px auto;
   flex-wrap: wrap;
 }
+.gifts .content a {
+  margin: auto;
+}
+@media (max-width: 500px) {
+  .gifts .content a {
+    margin: 20px auto;
+  }
+}
+.gifts .content a:hover {
+  opacity: 0.5;
+}
 
 .hashtag {
   background: #f7f7f7;
@@ -274,6 +472,11 @@ body {
   text-align: center;
   margin: 0;
 }
+@media (max-width: 650px) {
+  .hashtag h1 {
+    font-size: 2em;
+  }
+}
 
 .instagram {
   overflow: hidden;
@@ -284,6 +487,11 @@ body {
 }
 .instafeed .instafeed-item {
   padding: 30px;
+}
+@media (max-width: 480px) {
+  .instafeed .instafeed-item {
+    padding: 20px;
+  }
 }
 
 footer {
