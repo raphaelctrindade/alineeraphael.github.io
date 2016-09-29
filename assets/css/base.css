@@ -377,7 +377,7 @@ body {
 }
 .rsvp:before {
   content: "";
-  background: url(http://subtlepatterns.com/patterns/dark_fish_skin.png) repeat;
+  background: url(../images/patterns/dark_fish_skin.png) repeat;
   top: 0;
   left: 0;
   bottom: 0;
